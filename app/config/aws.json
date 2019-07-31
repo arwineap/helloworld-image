@@ -1,0 +1,5 @@
+{
+  "img_domain": "http://int-helloworld-image.s3.amazonaws.com",
+  "s3_bucket": "int-helloworld-image",
+  "sql_conn_string": "mysql+mysqldb://flask:jiu32ijdw8juidewqAI8O@mysql:3306/helloworld"
+}
