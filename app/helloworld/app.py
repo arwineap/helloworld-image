@@ -24,7 +24,7 @@ def root_view():
         return render_template("helloworld/error.html", error_message=img_data["error_message"]), 500
     if img_data == {}:
         # if img_data is nothing it means our database does not yet have any entries.
-        return render_template("helloworld/view.html")
+        return render_template("helloworld/view.html", title="Hello world! %d" % time.time())
     return render_template("helloworld/view.html", img_title=img_data['img_title'], img_domain=CONFIG_FILE['img_domain'], s3_path=img_data['s3_path'], title="Hello world! %d" % time.time())
 
 
