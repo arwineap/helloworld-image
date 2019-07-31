@@ -1,6 +1,4 @@
 {
-  "db_host": "mysql",
-  "db_port": 3306,
   "img_domain": "http://int-helloworld-image.s3.amazonaws.com",
   "s3_bucket": "int-helloworld-image",
   "sql_conn_string": "mysql+mysqldb://flask:h8fnu42fe98f2jf289@mysql:3306/helloworld"
