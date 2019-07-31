@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h4>{% block title %}{{title}} - helloworld{% endblock %}</h4>
+{% endblock %}
+
+{% block content %}
+{{status_message}}
+{% endblock %}

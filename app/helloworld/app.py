@@ -9,8 +9,10 @@ from werkzeug.utils import secure_filename
 import botocore
 import time
 import boto3
+import sqlalchemy
 
 helloworld_app = Blueprint('helloworld_app', __name__)
+s3 = boto3.client('s3')
 
 
 @helloworld_app.route('', methods=['GET'])
@@ -75,6 +77,32 @@ def new():
     return render_template("helloworld/new.html", img_domain=CONFIG_FILE['img_domain'], s3_path=img_data['s3_path'], img_title=img_data['img_title'])
 
 
+@helloworld_app.route('/healthcheck', methods=['GET'])
+def healthcheck():
+    """Run healthcheck on the app for the load balancer."""
+    system_health = {}
+    system_health['mysql'] = False
+    system_health['s3'] = False
+    # check mysql
+    try:
+        db_session.query(Image).count()
+        system_health['mysql'] = True
+    except sqlalchemy.exc.OperationalError:
+        system_health['mysql'] = False
+    # check s3
+    try:
+        if s3.head_bucket(Bucket=CONFIG_FILE['s3_bucket']):
+            system_health['s3'] = True
+        else:
+            system_health['s3'] = False
+    except botocore.exceptions.ClientError:
+        system_health['s3'] = False
+    # check if any healthchecks returned True
+    if all(health is True for health in system_health.values()):
+        return render_template("helloworld/healthcheck.html", status_message=system_health, title="OK")
+    return render_template("helloworld/healthcheck.html", status_message=system_health, title="Unhealthy"), 500
+
+
 def get_img_data(img_id=None):
     """
     Get img details.
@@ -103,7 +131,6 @@ def get_img_data(img_id=None):
 
 def s3_upload_img(file, bucket, content_type):
     """Upload file to s3."""
-    s3 = boto3.client('s3')
     try:
         s3.upload_fileobj(file, bucket, file.filename, ExtraArgs={"ACL": "public-read", "ContentType": file.content_type})
     except botocore.exceptions.ClientError as e:
