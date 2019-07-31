@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{% block title %}{% endblock %} - helloworld</title>
+</head>
+
+<body>
+<table class="outer" align="center" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; font-family: sans-serif; color: #8e8b85; margin: 0 auto; width: 100%; max-width: 640px;">
+  <tr><td height="10" style="padding: 0;"></td></tr>
+  <tr>
+    <td class="nav" style="padding: 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="color: #444; border-spacing: 0; font-family: sans-serif;">
+        <tr>
+          <td align="center" style="padding: 0 2%;">
+            <a href="./" style="color: #444; text-decoration: none; outline: 0;">
+              <img src="./static/logo.svg" width="150" alt="" style="border: 0; max-width: 150px !important; height: auto;">
+            </a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr><td height="10" style="padding: 0;"></td></tr>
+</table>
+
+<header>
+  {% block header %}{% endblock %}
+</header>
+
+<section class="content">
+  {% block content %}{% endblock %}
+</section>
+
+</body>
+</html>

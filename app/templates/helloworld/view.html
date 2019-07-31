@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h4>{% block title %}{{title}}{% endblock %}</h4>
+{% endblock %}
+
+{% block content %}
+{% if img_title and img_domain and s3_path %}
+<h5>{{img_title}}</h5>
+<img src="{{img_domain}}/{{s3_path}}">
+{% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+    mysql:
+        image: "mysql:5.7"
+        environment:
+            MYSQL_DATABASE: helloworld
+            MYSQL_USER: flask
+            MYSQL_PASSWORD: h8fnu42fe98f2jf289
+            MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+            MYSQL_ROOT_HOST: '127.0.0.1'
+
+    app:
+        image: helloworld:flask
+        build:
+          context: ./
+        ports:
+        - "5000:5000"
+        environment:
+          # Customize AWS_PROFILE
+          AWS_PROFILE: personal
+          CONFIG_FILE: /opt/config/local.json
+          PYTHONPATH: /opt
+        volumes:
+        # Customize your .aws credentials
+        - ~alex/.aws:/root/.aws
+        - ./:/opt
+        links:
+        - "mysql:mysql"

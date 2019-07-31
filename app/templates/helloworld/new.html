@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h4>{% block title %}new image{% endblock %}</h4>
+{% endblock %}
+
+{% block content %}
+<form action="?" method="POST" enctype="multipart/form-data">
+  <input type="file" name="img_file" />
+  <br />
+  <br />
+  <label for="img_title">image title</label>
+  <input type="text" name="img_title" />
+  <br />
+  <button type="submit">upload</button>
+</form>
+{% if img_title and img_domain and s3_path %}
+<br />
+<br />
+<h5>{{img_title}}</h5>
+<br />
+<img src={{img_domain}}/{{s3_path}} />
+{% endif %}
+{% endblock %}

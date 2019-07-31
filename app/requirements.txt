@@ -1,0 +1,7 @@
+Flask==1.1.1
+Flask-SQLAlchemy==2.4.0
+flask-marshmallow==0.10.1
+marshmallow-sqlalchemy==0.17.0
+mysqlclient==1.4.1
+Flask-Migrate==2.5.2
+boto3==1.9.198
