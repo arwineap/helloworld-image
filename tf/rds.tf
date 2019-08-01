@@ -87,15 +87,12 @@ data "aws_kms_secrets" "aurora" {
   }
 }
 
-
 resource "aws_route53_record" "db_private" {
  zone_id = "${aws_route53_zone.foobar_internal.id}"
  name    = "db.foobar.internal"
- type    = "A"
+ type    = "CNAME"
 
- alias {
-   name                   = "${aws_rds_cluster.cluster.endpoint}"
-   zone_id                = "${aws_rds_cluster.cluster.hosted_zone_id}"
-   evaluate_target_health = false
- }
+ ttl     = 60
+
+ records = ["${aws_rds_cluster.cluster.endpoint}"]
 }
