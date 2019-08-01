@@ -15,7 +15,7 @@ variable "min_app_count" {
 
 variable "max_app_count" {
   description = "Maximum number of containers to run"
-  default     = 3
+  default     = 6
 }
 
 variable "fargate_cpu" {
