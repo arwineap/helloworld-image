@@ -16,20 +16,19 @@ s3 = boto3.client('s3')
 
 
 @helloworld_app.route('', methods=['GET'])
-def root_view():
-    """Root route."""
-    img_id = request.args.get('img_id')
-    img_data, err = get_img_data(img_id)
+def root_get():
+    """Accept GET request with form to add an image."""
+    img_data, err = get_img_data()
     if err:
         return render_template("helloworld/error.html", error_message=img_data["error_message"]), 500
     if img_data == {}:
         # if img_data is nothing it means our database does not yet have any entries.
         return render_template("helloworld/view.html", title="Hello world! %d" % time.time())
-    return render_template("helloworld/view.html", img_title=img_data['img_title'], img_domain=CONFIG_FILE['img_domain'], s3_path=img_data['s3_path'], title="Hello world! %d" % time.time())
+    return render_template("helloworld/view.html", img_domain=CONFIG_FILE['img_domain'], s3_path=img_data['s3_path'], img_title=img_data['img_title'], title="Hello world! %d" % time.time())
 
 
-@helloworld_app.route('/new', methods=['POST'])
-def new_post():
+@helloworld_app.route('', methods=['POST'])
+def root_post():
     """Route will handle adding new images."""
     # Verify img_file is defined in POST and it's not an empty filename
     if "img_file" not in request.files or request.files["img_file"].filename == "":
@@ -62,20 +61,7 @@ def new_post():
     if err:
         # Getting new image has failed
         return render_template("helloworld/error.html", error_message=img_data["error_message"]), 500
-    return render_template("helloworld/new.html", img_domain=CONFIG_FILE['img_domain'], s3_path=img_data['s3_path'], img_title=img_data['img_title'])
-
-
-@helloworld_app.route('/new', methods=['GET'])
-def new():
-    """Accept GET request with form to add an image."""
-    img_data, err = get_img_data()
-    if err:
-        return render_template("helloworld/error.html", error_message=img_data["error_message"]), 500
-    if img_data == {}:
-        # if img_data is nothing it means our database does not yet have any entries.
-        return render_template("helloworld/new.html")
-    return render_template("helloworld/new.html", img_domain=CONFIG_FILE['img_domain'], s3_path=img_data['s3_path'], img_title=img_data['img_title'])
-
+    return render_template("helloworld/view.html", img_domain=CONFIG_FILE['img_domain'], s3_path=img_data['s3_path'], img_title=img_data['img_title'], title="Hello world! %d" % time.time())
 
 @helloworld_app.route('/healthcheck', methods=['GET'])
 def healthcheck():
