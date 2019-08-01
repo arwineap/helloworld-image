@@ -63,6 +63,7 @@ def root_post():
         return render_template("helloworld/error.html", error_message=img_data["error_message"]), 500
     return render_template("helloworld/view.html", img_domain=CONFIG_FILE['img_domain'], s3_path=img_data['s3_path'], img_title=img_data['img_title'], title="Hello world! %d" % time.time())
 
+
 @helloworld_app.route('/healthcheck', methods=['GET'])
 def healthcheck():
     """Run healthcheck on the app for the load balancer."""
