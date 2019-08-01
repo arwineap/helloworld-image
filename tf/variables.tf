@@ -8,8 +8,13 @@ variable "app_port" {
   default     = 5000
 }
 
-variable "app_count" {
-  description = "Number of containers to run"
+variable "min_app_count" {
+  description = "Minimum number of containers to run"
+  default     = 3
+}
+
+variable "max_app_count" {
+  description = "Maximum number of containers to run"
   default     = 3
 }
 

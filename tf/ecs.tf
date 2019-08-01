@@ -61,7 +61,7 @@ resource "aws_ecs_service" "main" {
   name            = "helloworld-image-service"
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.app.arn}"
-  desired_count   = "${var.app_count}"
+  desired_count   = "${var.min_app_count}"
   launch_type     = "FARGATE"
 
   network_configuration {
