@@ -2,7 +2,7 @@ version: '2'
 
 services:
     mysql:
-        image: "mysql:5.7"
+        image: "mysql:5.6"
         environment:
             MYSQL_DATABASE: helloworld
             MYSQL_USER: flask
@@ -19,6 +19,8 @@ services:
         environment:
           # Customize AWS_PROFILE
           AWS_PROFILE: personal
+          # Customize AWS_DEFAULT_REGION
+          AWS_DEFAULT_REGION: "us-east-1"
           CONFIG_FILE: /opt/config/local.json
           PYTHONPATH: /opt
         volumes:

@@ -1,5 +1,6 @@
 {
   "img_domain": "http://int-helloworld-image.s3.amazonaws.com",
   "s3_bucket": "int-helloworld-image",
-  "sql_conn_string": "mysql+mysqldb://flask:jiu32ijdw8juidewqAI8O@mysql-helloworld.cfil9uklb3ai.us-east-1.rds.amazonaws.com:3306/helloworld"
+  "sql_conn_string": "AQICAHhsKNpgZ85glV2MixU0VSJIrCyQa5T64D3SU6UvMQvGEwGitKeC5D5ZqC7Gx3RXPEwJAAAAszCBsAYJKoZIhvcNAQcGoIGiMIGfAgEAMIGZBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDEZ4vAzZCddHR4SEDgIBEIBsY7VE/m0Ky4aEc87e8I1qo17LzmpQYMmATndsI3H9pdwDC4Sg+JYCVzZymvng7+lHSt4HhZwt6p18s6C5qEslgTpsKnBx8U6Z7YbxEl1DjmZxJxoTlQaD1/Lyox+rGyCMD8LAP0mt5ntbypRW",
+  "kms": ["sql_conn_string"]
 }
