@@ -14,11 +14,11 @@
   <br />
   <button type="submit">upload</button>
 </form>
-{% if img_title and img_domain and s3_path %}
+{% if img_domain and img_data %}
 <br />
 <br />
-<h5>{{img_title}}</h5>
+<h5>{{img_data['img_title']}}</h5>
 <br />
-<img src={{img_domain}}/{{s3_path}} />
+<img src={{img_domain}}/{{img_data['s3_path']}} />
 {% endif %}
 {% endblock %}

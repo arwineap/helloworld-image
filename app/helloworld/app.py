@@ -23,8 +23,8 @@ def root_get():
         return render_template("helloworld/error.html", error_message=img_data["error_message"]), 500
     if img_data == {}:
         # if img_data is nothing it means our database does not yet have any entries.
-        return render_template("helloworld/view.html", title="Hello world! %d" % time.time())
-    return render_template("helloworld/view.html", img_domain=CONFIG_FILE['img_domain'], s3_path=img_data['s3_path'], img_title=img_data['img_title'], title="Hello world! %d" % time.time())
+        return render_template("helloworld/view.html", img_data=img_data, title="Hello world! %d" % time.time())
+    return render_template("helloworld/view.html", img_domain=CONFIG_FILE['img_domain'], img_data=img_data, title="Hello world! %d" % time.time())
 
 
 @helloworld_app.route('', methods=['POST'])
@@ -61,7 +61,7 @@ def root_post():
     if err:
         # Getting new image has failed
         return render_template("helloworld/error.html", error_message=img_data["error_message"]), 500
-    return render_template("helloworld/view.html", img_domain=CONFIG_FILE['img_domain'], s3_path=img_data['s3_path'], img_title=img_data['img_title'], title="Hello world! %d" % time.time())
+    return render_template("helloworld/view.html", img_data=img_data, img_domain=CONFIG_FILE['img_domain'], title="Hello world! %d" % time.time())
 
 
 @helloworld_app.route('/healthcheck', methods=['GET'])
