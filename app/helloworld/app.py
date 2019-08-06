@@ -65,7 +65,7 @@ def root_post():
 
 
 @helloworld_app.route('/health', methods=['GET'])
-def healthcheck():
+def health():
     """Run healthcheck on the app for the load balancer."""
     system_health = {}
     system_health['mysql'] = False
