@@ -46,3 +46,12 @@ Apply the migrations by restarting docker-compose or by running:
 ```
 docker-compose exec flask db upgrade
 ```
+
+## AWS usage
+Terraform is configured for AWS usage ( see ../tf/README.md )
+
+### Building
+Each commit in github triggers a container build in dockerhub
+
+### Deploying
+Update the helloworld-image service in ECS, and force a new deploy
