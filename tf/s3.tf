@@ -11,8 +11,13 @@ resource "aws_s3_bucket" "int-helloworld-image" {
     enabled = true
 
     noncurrent_version_expiration {
-      days = 1
+      days = 30
     }
+
+    expiration {
+      days = 30
+    }
+
   }
 }
 
@@ -32,8 +37,5 @@ resource "aws_s3_bucket" "int-terraform-state-1564544704" {
       days = 30
     }
 
-    expiration {
-      days = 30
-    }
   }
 }
