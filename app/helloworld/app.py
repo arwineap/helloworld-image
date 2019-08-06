@@ -64,7 +64,7 @@ def root_post():
     return render_template("helloworld/view.html", img_data=img_data, img_domain=CONFIG_FILE['img_domain'], title="Hello world! %d" % time.time())
 
 
-@helloworld_app.route('/healthcheck', methods=['GET'])
+@helloworld_app.route('/health', methods=['GET'])
 def healthcheck():
     """Run healthcheck on the app for the load balancer."""
     system_health = {}
@@ -86,8 +86,8 @@ def healthcheck():
         system_health['s3'] = False
     # check if any healthchecks returned True
     if all(health is True for health in system_health.values()):
-        return render_template("helloworld/healthcheck.html", status_message=system_health, title="OK")
-    return render_template("helloworld/healthcheck.html", status_message=system_health, title="Unhealthy"), 500
+        return render_template("helloworld/health.html", status_message=system_health, title="OK")
+    return render_template("helloworld/health.html", status_message=system_health, title="Unhealthy"), 500
 
 
 def get_img_data(img_id=None):
