@@ -31,5 +31,9 @@ resource "aws_s3_bucket" "int-terraform-state-1564544704" {
     noncurrent_version_expiration {
       days = 30
     }
+
+    expiration {
+      days = 30
+    }
   }
 }
